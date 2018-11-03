@@ -1,6 +1,8 @@
-from unittest import TestLoader, TestSuite, TextTestRunner
-
-from .run import check_files
+from unittest import (
+    TestLoader,
+    TestSuite,
+    TextTestRunner
+)
 
 
 test_suite = TestSuite()
@@ -10,11 +12,9 @@ suite = loader.discover('.', pattern='*_test.py')
 runner = TextTestRunner(verbosity=2)
 result = runner.run(suite)
 
-passed = check_files()
-
-if result.wasSuccessful() and passed:
+if result.wasSuccessful():
     print('Success')
     exit(0)
-else:
+else:  # pragma: no cover
     print('Failure')
     exit(1)
